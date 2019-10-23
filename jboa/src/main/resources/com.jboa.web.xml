@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+    <!-- 导入外部Service配置文件 -->
+    <import resource="com.jboa.service.xml" />
+    <!-- 配置验证码Action -->
+    <bean id="randomAction" class="com.jboa.action.RandomAction"
+        scope="prototype" />
+   
+    <!-- 配置职工Action -->
+    <bean id="employeeAction" class="com.jboa.action.EmployeeAction" scope="prototype">
+    	<property name="employeeService" ref="employeeService"></property>
+    </bean>
+    
+    <!-- 配置报销单Action -->
+    <bean id="claimVoucherAction" class="com.jboa.action.ClaimVoucherAction" scope="prototype">
+    	<!-- <property name="claimVoucherService" ref="claimVouCherService"></property> -->
+    	<!-- 根据不同的职工权限配置不同的Service  利用map配置-->
+    	<property name="claimVoucherServicesMapping">
+    		<map>
+    			<!-- 根据职务的英文名称引用不同的service -->
+    			<entry key="Stuff" value-ref="claimVouCherServiceStuff"></entry>
+    			<entry key="FM" value-ref="claimVouCherServiceFM"></entry>
+    			<entry key="GM" value-ref="claimVouCherServiceGM"></entry>
+    			<entry key="Cashier" value-ref="claimVouCherServiceCashier"></entry>
+    		</map>
+    	</property>
+    </bean>
+    
+    <!-- 审核报销单Action的配置 -->
+    <bean id="checkResultAction" class="com.jboa.action.CheckResultAction" scope="prototype">
+    	<property name="checkResultService" ref="checkResultService"></property>
+    </bean>
+    
+    <!-- 请假单Action配置 -->
+    <bean id="leaveAction" class="com.jboa.action.LeaveAction" scope="prototype">
+    	<!-- <property name="leaveService" ref="leaveService"></property> -->
+    	<!-- 根据不同的职工权限配置不同的Service -->
+    	<property name="leaveServiceMap">
+    		<map>
+    			<entry key="Stuff" value-ref="leaveServiceStuff"></entry>
+    			<entry key="FM" value-ref="leaveServiceFM"></entry>
+    		</map>
+    	</property>
+    </bean>
+    
+    <!-- 按角色调用组件方案1 -->
+  <!--   <bean id="claimVoucherActionStuff" class="com.jboa.action.ClaimVoucherAction" scope="prototype">
+    	<property name="claimVoucherService" ref="claimVouCherServiceStuff"></property>
+    </bean>
+    <bean id="claimVoucherActionFM" class="com.jboa.action.ClaimVoucherAction" scope="prototype">
+    	<property name="claimVoucherService" ref="claimVouCherServiceFM"></property>
+    </bean>
+    <bean id="claimVoucherActionGM" class="com.jboa.action.ClaimVoucherAction" scope="prototype">
+    	<property name="claimVoucherService" ref="claimVouCherServiceGM"></property>
+    </bean>
+    <bean id="claimVoucherActionCash" class="com.jboa.action.ClaimVoucherAction" scope="prototype">
+    	<property name="claimVoucherService" ref="claimVouCherServiceCash"></property>
+    </bean> -->
+    
+    
+</beans>

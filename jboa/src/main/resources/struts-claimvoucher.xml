@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="claimvoucher" namespace="/jsp/claim" extends="struts-default">
+		<!-- 按角色调用组件方案1 -->
+		<!-- <action name="claimVoucher_*_" method="{1}" class="claimVoucherAction{2}"> 
+			<result name="list">claim_voucher_list.jsp</result> <result name="view">claim_voucher_view.jsp</result> 
+			<result name="update">claim_voucher_update.jsp</result> <result name="redirectList" 
+			type="redirectAction">claimVoucher_searchClaimVoucher_${positionForShort}</result> 
+			</action> -->
+			
+		<!-- 配置报销单跳转页面 -->
+		<action name="claimVoucher_*" method="{1}" class="claimVoucherAction">
+			<result name="list">claim_voucher_list.jsp</result>
+			<result name="view">claim_voucher_view.jsp</result>
+			<result name="update">claim_voucher_update.jsp</result>
+			<result name="check">claim_voucher_check.jsp</result>
+			<result name="redirectList" type="redirectAction">claimVoucher_searchClaimVoucher</result>
+		</action>
+		
+		<!-- 配置审核报销单跳转页面 -->
+		<action name="checkResult_*" method="{1}" class="checkResultAction">
+			<result name="success" type="redirectAction">claimVoucher_searchClaimVoucher</result>
+		</action>
+	</package>
+
+</struts>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- struts2基本配置 -->
+	<!-- 配置自定义的消息信息 -->
+    <constant name="struts.custom.i18n.resources" value="messages" />
+    <!-- 开启动态调用方法 -->
+    <constant name="struts.enable.DynamicMethodInvocation"
+        value="true" />
+    <!-- 开启自定义的开发模式 -->
+    <constant name="struts.devMode" value="true" />
+   <!-- 开启页面布局的方式 -->
+    <constant name="struts.ui.theme" value="simple" />
+    <!-- 配置错误页面 -->
+    <package name="default" namespace="/" extends="struts-default">
+        <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception"
+                result="error" />
+        </global-exception-mappings>
+    </package>
+    <!-- 验证码操作Action配置 -->
+    <package name="random" extends="struts-default">
+        <!-- Random验证码 -->
+        <action name="random" class="randomAction">
+            <result type="stream">
+                <param name="contentType">image/jpeg</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+    </package>
+
+    <include file="struts-employee.xml" />
+    <include file="struts-claimvoucher.xml" />
+    <include file="struts-leave.xml" />
+</struts>
+

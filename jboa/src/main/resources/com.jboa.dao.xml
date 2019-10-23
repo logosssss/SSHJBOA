@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+     
+     <!-- 配置职工Dao -->
+     <bean id="employeeDao" class="com.jboa.dao.impl.EmployeeDaoImpl">
+     	<!-- 配置SessionFactory 对象 -->
+     	<property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     
+     <!-- 员工dao 的配置 -->
+     <bean id="claimVouCherDao" class="com.jboa.dao.impl.ClaimVouCherDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     
+     <!-- 报销单详情dao 的配置 -->
+     <bean id="claimVoucherDetailDao" class="com.jboa.dao.impl.ClaimVoucherDetailDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     
+     <!-- 报销单审核dao 的配置 -->
+     <bean id="checkResultDao" class="com.jboa.dao.impl.CheckResultDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     
+     <!-- 请假单dao 的配置 -->
+     <bean id="leaveDao" class="com.jboa.dao.impl.LeaveDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+</beans>

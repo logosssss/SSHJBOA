@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<!-- 导入外部Da配置文件 -->
+	<import resource="com.jboa.dao.xml" />
+	<!-- 配置职工 service -->
+	<bean id="employeeService" class="com.jboa.service.impl.EmployeeSeriviceImpl">
+		<property name="employeeDao" ref="employeeDao"></property>
+	</bean>
+	
+	<!-- <bean id="claimVouCherService" class="com.jboa.service.impl.ClaimVoucherImpl"> 
+		<property name="claimVouCherDao" ref="claimVouCherDao"></property> <property 
+		name="claimVouCherDetailDao" ref="claimVoucherDetailDao"></property> <property 
+		name="checkResultDao" ref="checkResultDao"></property> </bean> -->
+	<!-- 普通员工报销单service 的配置 -->
+	<bean id="claimVouCherServiceStuff" class="com.jboa.service.impl.ClaimVoucherImplStuff">
+		<property name="claimVouCherDao" ref="claimVouCherDao"></property>
+		<property name="claimVouCherDetailDao" ref="claimVoucherDetailDao"></property>
+		<property name="checkResultDao" ref="checkResultDao"></property>
+	</bean>
+	<!-- 部门经理报销单service 的配置 -->
+	<bean id="claimVouCherServiceFM" class="com.jboa.service.impl.ClaimVoucherImplFM">
+		<property name="claimVouCherDao" ref="claimVouCherDao"></property>
+		<property name="claimVouCherDetailDao" ref="claimVoucherDetailDao"></property>
+		<property name="checkResultDao" ref="checkResultDao"></property>
+	</bean>
+	<!-- 总经理报销单service 的配置 -->
+	<bean id="claimVouCherServiceGM" class="com.jboa.service.impl.ClaimVoucherImplGM">
+		<property name="claimVouCherDao" ref="claimVouCherDao"></property>
+		<property name="claimVouCherDetailDao" ref="claimVoucherDetailDao"></property>
+		<property name="checkResultDao" ref="checkResultDao"></property>
+	</bean>
+	<!-- 财务报销单service 的配置 -->
+	<bean id="claimVouCherServiceCashier" class="com.jboa.service.impl.ClaimVoucherImplCash">
+		<property name="claimVouCherDao" ref="claimVouCherDao"></property>
+		<property name="claimVouCherDetailDao" ref="claimVoucherDetailDao"></property>
+		<property name="checkResultDao" ref="checkResultDao"></property>
+	</bean>
+	
+	<!-- 配置报销单审核Serivce -->
+	<bean id="checkResultService" class="com.jboa.service.impl.CheckResultServiceImpl">
+		<property name="claimVoucherDao" ref="claimVouCherDao"></property>
+		<property name="checkResultDao" ref="checkResultDao"></property>
+		<property name="employeeDao" ref="employeeDao"></property>
+	</bean>
+	
+	<!-- <bean id="leaveService" class="com.jboa.service.impl.LeaveServiceImpl">
+		<property name="leaveDao" ref="leaveDao"></property>
+	</bean> -->
+	<!--  -->
+	<!-- 普通员工请假单service配置 -->
+	<bean id="leaveServiceStuff" class="com.jboa.service.impl.LeaveServiceImplStuff">
+		<property name="leaveDao" ref="leaveDao"></property>
+	</bean>
+	<!-- 经理请假单service配置 -->
+	<bean id="leaveServiceFM" class="com.jboa.service.impl.LeavelServiceImplPM">
+		<property name="leaveDao" ref="leaveDao"></property>
+	</bean>
+</beans>

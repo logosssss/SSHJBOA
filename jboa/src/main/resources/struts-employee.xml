@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<!-- 配置登录请求的跳转页面 -->
+<struts>
+    <package name="employee" extends="struts-default">
+    	<action name="login" class="employeeAction" method="login">
+    		<result name="input">/login.jsp</result>
+    		<result>/index.jsp</result>
+    	</action>
+    </package>
+</struts>
+

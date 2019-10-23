@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<!-- 请假单跳转页面配置 -->
+<struts>
+    <package name="leave" namespace="/jsp/leave" extends="struts-default">
+        <!-- 请假操作Action配置 -->
+        <action name="leave_*"  method="{1}" class="leaveAction">
+        	<result name="edit">leave_edit.jsp</result>
+        	<result name="list">leave_list.jsp</result>
+        	<result name="view">leave_view.jsp</result>
+        	<result name="check">leave_check.jsp</result>
+        	<result name="redirectList" type="redirectAction">leave_searchLeave</result>
+        </action>
+    </package>
+
+</struts>
+
